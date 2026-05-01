@@ -202,7 +202,12 @@ def plot_scatter(x, y, xlabel, ylabel, title):
 
 def plot_bar(days, heights, ylim, ylabel, title):
     '''
-    ...
+    Plots a bar chart using the given day names, heights, and other variables
+    Parameter days: the names of the days of the week
+    Parameter heights1: the heights value for the corresponding days
+    Parameter ylim: the list holding the minimum y-value and the maximum y-value
+    Parameter ylabel: the string that will be the chart's y-label
+    Parameter title: the string that will be the chart's title
     '''
     plt.figure()
     plt.bar(days, height=heights)
@@ -213,7 +218,12 @@ def plot_bar(days, heights, ylim, ylabel, title):
 
 def hypothesis_test(x, y, alpha, two_tailed, dependent):
     '''
-    ...
+    Performs a hypothesis test using the given variables, printing out steps 3, 4, & 5
+    Parameter x: the first set of values for the hypothesis test
+    Parameter y: the second set of values for the hypothesis test
+    Parmeter alpha: the alpha level for the hypothesis test
+    Parameter two_tailed: the boolean value for whether the test should is two-tailed
+    Parameter dependent: the boolean value for whether the test should is dependent
     '''
     t_computed = 0
     p_val = 0
@@ -238,8 +248,9 @@ def hypothesis_test(x, y, alpha, two_tailed, dependent):
 
 def encode_data(df):
     '''
-    ...
+    Using LabelEncoders, encodes specific data from categorical to numeric
     Parameter df: the dataframe holding our typing dataset
+    Returns: the dataframe of typing data but now with specific columns encoded
     '''
     pb_le = LabelEncoder()
     night_le = LabelEncoder()
@@ -255,9 +266,9 @@ def encode_data(df):
 
 def knn_clf(X, y):
     '''
-    ...
-    ...
-    ...
+    Creates a kNN classifier for the given data & calculates its accuracy
+    Parameter X: the 2D matrix features that will be used to make predictions
+    Parameter y: the feature that will be predicted
     Returns: the accuracy score of the created kNN classifer
     '''
     scaler = MinMaxScaler()
@@ -272,7 +283,10 @@ def knn_clf(X, y):
 
 def tree_clf(X, y):
     '''
-    ...
+    Creates a tree classifier for the given data & calculates its accuracy
+    Parameter X: the 2D matrix features that will be used to make predictions
+    Parameter y: the feature that will be predicted
+    Returns: the accuracy score of the created tree classifier
     '''
     X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
     
