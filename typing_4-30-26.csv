@@ -1,5 +1,7 @@
 _id,isPb,wpm,acc,rawWpm,consistency,charStats,mode,mode2,quoteLength,restartCount,testDuration,afkDuration,incompleteTestSeconds,punctuation,numbers,language,funbox,difficulty,lazyMode,blindMode,bailedOut,tags,timestamp
-69f29f21b392f0b5c967f22d,,71.6,97.39,76,76.23,358;3;0;1,time,60,,0,60,0,0,false,false,english,,normal,false,false,false,,1777508130473
+69f3f607b392f0b5c9753b15,true,83.99,97.47,85.59,73.51,420;3;0;0,time,60,,0,60.01,0,0,false,false,english,,normal,false,false,false,,1777595913232
+69f37950b392f0b5c9705b90,,75.8,96.5,78.6,73.08,379;3;1;1,time,60,-1,0,60,0,0,false,false,english,,normal,false,false,false,,1777563984000
+69f29f21b392f0b5c967f22d,,71.6,97.39,76,76.23,358;3;0;1,time,60,-1,0,60,0,0,false,false,english,,normal,false,false,false,,1777508129000
 69f22dcab392f0b5c963719a,,76.6,96.36,81.6,74.71,383;5;2;1,time,60,-1,0,60,0,0,false,false,english,,normal,false,false,false,,1777479114000
 69f184d5b392f0b5c95c27c6,,70.19,95.49,74.39,72.12,351;8;0;0,time,60,-1,0,60,0,0,false,false,english,,normal,false,false,false,,1777435861000
 69f0dc08b392f0b5c95618e0,,72.81,97.62,74.41,76.4,364;0;2;0,time,60,-1,0,59.99,0,0,false,false,english,,normal,false,false,false,,1777392648000
@@ -119,7 +121,7 @@ _id,isPb,wpm,acc,rawWpm,consistency,charStats,mode,mode2,quoteLength,restartCoun
 698ec21cd5fe59bad8c83e07,true,66.01,97.69,69.21,73.26,330;5;0;0,time,60,-1,0,59.99,1,0,false,false,english,,normal,false,false,false,,1770963484000
 698e0597d5fe59bad8c11da1,,60.61,96.11,66.81,59.28,303;6;1;0,time,60,-1,0,59.99,4,0,false,false,english,,normal,false,false,false,,1770915223000
 698d74b9d5fe59bad8ba5852,true,63.6,95.04,72.6,72.11,318;9;1;0,time,60,-1,0,60,0,0,false,false,english,,normal,false,false,false,,1770878137000
-698cb6b2d5fe59bad8b2fb46,true,50.8,93.35,63.21,67.88,254;10;2;2,time,60,-1,0,59.99,0,0,true,false,english,,normal,false,false,false,,1770829490000
+698cb6b2d5fe59bad8b2fb46,,50.8,93.35,63.21,67.88,254;10;2;2,time,60,-1,0,59.99,0,0,true,false,english,,normal,false,false,false,,1770829490000
 698bd4d2d5fe59bad8a969b4,true,62,95.43,70,71.29,310;8;1;1,time,60,-1,0,60,0,0,false,false,english,,normal,false,false,false,,1770771666000
 698b5e1bd5fe59bad8a43ce5,,57.01,95.38,65.01,69.06,285;8;0;1,time,60,-1,0,59.99,0,0,false,false,english,,normal,false,false,false,,1770741275000
 698ac756d5fe59bad89d4ed4,true,58.6,95.48,66.4,68.97,293;7;2;0,time,60,-1,0,60,0,0,false,false,english,,normal,false,false,false,,1770702678000

@@ -8,6 +8,7 @@
 ##############################################
 
 import pandas as pd
+import matplotlib.pyplot as plt
 
 def clean_data(df):
     '''
@@ -49,7 +50,7 @@ def add_columns(df):
                   "true", "false", "true", "false", "true", "false", "true","false", "true", "false", "true", "false", "false",
                   "true", "true", "true", "false", "true", "false", "true", "false", "true", "false", "true", "false", "true",
                   "true", "false", "true", "false", "true", "false", "false", "true", "false", "true", "false", "false", "false",
-                  "true", "false", "true", "false", "true", "false", "true"]
+                  "true", "false", "true", "false", "true", "false", "true", "false", "true"]
     df.insert(1, "night", night_list)
 
     date_list = ["2-9-26", "2-10-26", "2-10-26", "2-11-26", "2-11-26", "2-12-26", "2-12-26", "2-13-26", "2-13-26", "2-14-26",
@@ -64,7 +65,105 @@ def add_columns(df):
                  "4-7-26", "4-8-26", "4-9-26", "4-10-26", "4-12-26", "4-13-26", "4-13-26", "4-14-26", "4-14-26", "4-15-26",
                  "4-15-26", "4-16-26", "4-16-26", "4-17-26", "4-19-26", "4-19-26", "4-20-26", "4-20-26", "4-21-26", "4-22-26",
                  "4-22-26", "4-23-26", "4-23-26", "4-24-26", "4-25-26", "4-26-26", "4-26-26", "4-27-26", "4-27-26", "4-28-26",
-                 "4-28-26", "4-29-26", "4-29-26"]
+                 "4-28-26", "4-29-26", "4-29-26", "4-30-26", "4-30-26"]
     df.insert(1, "date", date_list)
 
     return df
+
+def split_months(df) :
+    '''
+    Splitting the typing data into it's months
+    Parameter df: the dataframe that will be split
+    Returns: a list of 3 dataframes, each holding one month's worth of data
+    '''
+    # hard-coding the numbers in, unless I have time to go back and make it more dynamic
+    feb_df = df.iloc[0:36] # the numbers are the indexes of where the months start and stop
+    mar_df = df.iloc[36:88]
+    apr_df = df.iloc[88:126]
+
+    return [feb_df, mar_df, apr_df]
+
+def wpm_avg_over_time(months_split):
+    '''
+    ...
+    '''
+    morning_wpm_avg = []
+    night_wpm_avg = []
+
+    num_months = 3
+    for i in range(num_months):
+        # split into morning/day
+        grouped_by_time = months_split[i].groupby("night")
+        morning_df = grouped_by_time.get_group("false")
+        night_df = grouped_by_time.get_group("true")
+
+        morning_wpm_avg.append(morning_df["wpm"].mean())
+        night_wpm_avg.append(night_df["wpm"].mean())
+    
+    return morning_wpm_avg, night_wpm_avg
+
+def acc_avg_over_time(months_split):
+    '''
+    ...
+    '''
+    morning_acc_avg = []
+    night_acc_avg = []
+
+    num_months = 3
+    for i in range(num_months):
+        # split into morning/day
+        grouped_by_time = months_split[i].groupby("night")
+        morning_df = grouped_by_time.get_group("false")
+        night_df = grouped_by_time.get_group("true")
+
+        morning_acc_avg.append(morning_df["acc"].mean())
+        night_acc_avg.append(night_df["acc"].mean())
+    
+    return morning_acc_avg, night_acc_avg
+
+def days_raw_wpm(df, days):
+    '''
+    ...
+    '''
+    print("hi")
+    days_raw_wpm = []
+    for day in days:
+        day_raw_wpm = df.groupby("dayOfTheWeek").get_group(day)["rawWpm"].mean()
+        print(day_raw_wpm)
+        days_raw_wpm.append(day_raw_wpm)
+    return days_raw_wpm
+
+def plot_grouped_bar(month_names, heights1, heights2, ylim, ylabel, title):
+    '''
+    ...
+    '''
+    plt.figure()
+    plt.bar(month_names, height=heights1, width=-0.2, align="edge", label="morning")
+    plt.bar(month_names, height=heights2, width=0.2, align="edge", label="night")
+    plt.ylim(ylim)
+    plt.legend(loc="upper right")
+    plt.ylabel(ylabel)
+    plt.title(title)
+    plt.show()
+
+def plot_scatter(x, y, xlabel, ylabel, title):
+    '''
+    ...
+    '''
+    plt.figure()
+    plt.scatter(x, y)
+    plt.xticks(rotation=45)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.title(title)
+    plt.show()
+
+def plot_bar(days, heights, ylabel, title):
+    '''
+    ...
+    '''
+    plt.figure()
+    plt.hist(days, height=heights)
+    plt.ylabel(ylabel)
+    plt.title(title)
+    plt.show()
