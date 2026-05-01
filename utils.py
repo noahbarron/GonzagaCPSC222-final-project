@@ -7,8 +7,16 @@
 #              It does ...
 ##############################################
 
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
 
 def clean_data(df):
     '''
@@ -167,3 +175,47 @@ def plot_bar(days, heights, ylabel, title):
     plt.ylabel(ylabel)
     plt.title(title)
     plt.show()
+
+def encode_data(df):
+    '''
+    ...
+    '''
+    pb_le = LabelEncoder()
+    night_le = LabelEncoder()
+    days_le = LabelEncoder()
+    pb_le = pb_le.fit([np.nan, True])
+    night_le = night_le.fit(["false", "true"])
+    days_le = days_le.fit(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"])
+    df["isPb"] = pb_le.transform(df["isPb"])
+    df["night"] = night_le.transform(df["night"])
+    df["dayOfTheWeek"] = days_le.transform(df["dayOfTheWeek"])
+
+    return df
+
+def knn_clf(X, y):
+    '''
+    ...
+    ...
+    ...
+    Returns: the accuracy score of the created kNN classifer
+    '''
+    scaler = MinMaxScaler()
+    scaler.fit(X)
+    X_scaled = scaler.transform(X)
+    X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, random_state=0)
+
+    knn_clf = KNeighborsClassifier(n_neighbors=3, metric="euclidean")
+    knn_clf.fit(X_train, y_train)
+    y_predicted = knn_clf.predict(X_test)
+    return accuracy_score(y_test, y_predicted)
+
+def tree_clf(X, y):
+    '''
+    ...
+    '''
+    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
+    
+    tree_clf = DecisionTreeClassifier()
+    tree_clf.fit(X_train, y_train)
+    y_predicted = tree_clf.predict(X_test)
+    return accuracy_score(y_test, y_predicted)
