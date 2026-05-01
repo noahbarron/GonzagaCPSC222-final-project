@@ -10,6 +10,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import scipy.stats as stats
 
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import MinMaxScaler
@@ -175,6 +176,31 @@ def plot_bar(days, heights, ylabel, title):
     plt.ylabel(ylabel)
     plt.title(title)
     plt.show()
+
+def hypothesis_test(x, y, alpha, two_tailed, dependent):
+    '''
+    ...
+    '''
+    t_computed = 0
+    p_val = 0
+    if dependent:
+        t_computed, p_val = stats.ttest_rel(x, y)
+    else:
+        t_computed, p_val = stats.ttest_ind(x, y)
+    if two_tailed:
+        p_val /= 2 # because it's one-tailed
+
+    print("Step 3 (Cont.):")
+    print("t computed:", t_computed, "p value:", p_val)
+
+    print()
+    print("Step 4:\nIf our p-value is less than our alpha, we reject the null hypothesis.")
+    print()
+    print("Step 5:")
+    if p_val < alpha:
+        print("We reject the null hypothesis.")
+    else:
+        print("We do NOT reject the null hypothesis.")
 
 def encode_data(df):
     '''
