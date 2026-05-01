@@ -4,7 +4,8 @@
 # Data Assignment #8 / Project S26
 # May 1, 2026
 # Description: This utils.py file holds the utility functions for the final project.
-#              It does ...
+#              It cleans data, separates variables, creates visualizations, performs
+#              hypothesis tests, and creates classifications.
 ##############################################
 
 import numpy as np
@@ -83,7 +84,7 @@ def split_months(df) :
     '''
     Splitting the typing data into it's months
     Parameter df: the dataframe that will be split
-    Returns: a list of 3 dataframes, each holding one month's worth of data
+    Returns: the list of 3 dataframes, each holding one month's worth of data
     '''
     # hard-coding the numbers in, unless I have time to go back and make it more dynamic
     feb_df = df.iloc[0:36] # the numbers are the indexes of where the months start and stop
@@ -94,7 +95,9 @@ def split_months(df) :
 
 def wpm_avg_over_time(months_split):
     '''
-    ...
+    Computes the morning and night WPM means for each month
+    Parameter months_split: the list holding a dataframe for each month's data
+    Returns: the list of morning WPM for each month & the list of night WPM for each month
     '''
     morning_wpm_avg = []
     night_wpm_avg = []
@@ -113,7 +116,9 @@ def wpm_avg_over_time(months_split):
 
 def acc_avg_over_time(months_split):
     '''
-    ...
+    Computes the morning and night accuracy means for each month
+    Parameter months_split: the list holding a dataframe for each month's data
+    Returns: the list of morning accuracy for each month & the list of night accuracy for each month
     '''
     morning_acc_avg = []
     night_acc_avg = []
@@ -132,7 +137,10 @@ def acc_avg_over_time(months_split):
 
 def days_raw_wpm(df, days):
     '''
-    ...
+    Computes the raw WPM mean for each day of the week
+    Parameter df: the dataframe holding our typing dataset
+    Parameter days: the list holding the names of the days of the week
+    Returns: the list of the raw WPM mean for each day of the week
     '''
     days_raw_wpm = []
     for day in days:
@@ -142,7 +150,10 @@ def days_raw_wpm(df, days):
 
 def week_wpm(df, days):
     '''
-    ...
+    Grabs the weekday WPM values and the weekend WPM values
+    Parameter df: the dataframe holding our typing dataset
+    Parameter days: the list holding the names of the days of the week
+    Returns: the list of weekday WPM values and the list of weekend WPM values
     '''
     weekday_wpm = []
     weekend_wpm = []
@@ -155,7 +166,13 @@ def week_wpm(df, days):
 
 def plot_grouped_bar(month_names, heights1, heights2, ylim, ylabel, title):
     '''
-    ...
+    Plots a grouped bar chart using the given names, heights, and other variables
+    Parameter month_names: the names of each month
+    Parameter heights1: the first height value for the corresponding month
+    Parameter heights2: the second height value for the corresponding month
+    Parameter ylim: the list holding the minimum y-value and the maximum y-value
+    Parameter ylabel: the string that will be the chart's y-label
+    Parameter title: the string that will be the chart's title
     '''
     plt.figure()
     plt.bar(month_names, height=heights1, width=-0.2, align="edge", label="morning")
@@ -168,7 +185,12 @@ def plot_grouped_bar(month_names, heights1, heights2, ylim, ylabel, title):
 
 def plot_scatter(x, y, xlabel, ylabel, title):
     '''
-    ...
+    Plots a scatter chart using the given x values, y values, and other variables
+    Parameter x: the x values for the chart
+    Parameter y: the y values for the chart
+    Parameter xlabel: the string that will be the chart's x-label
+    Parameter ylabel: the string that will be the chart's y-label
+    Parameter title: the string that will be the chart's title
     '''
     plt.figure()
     plt.scatter(x, y)
@@ -217,6 +239,7 @@ def hypothesis_test(x, y, alpha, two_tailed, dependent):
 def encode_data(df):
     '''
     ...
+    Parameter df: the dataframe holding our typing dataset
     '''
     pb_le = LabelEncoder()
     night_le = LabelEncoder()
