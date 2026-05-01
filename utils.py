@@ -134,11 +134,9 @@ def days_raw_wpm(df, days):
     '''
     ...
     '''
-    print("hi")
     days_raw_wpm = []
     for day in days:
         day_raw_wpm = df.groupby("dayOfTheWeek").get_group(day)["rawWpm"].mean()
-        print(day_raw_wpm)
         days_raw_wpm.append(day_raw_wpm)
     return days_raw_wpm
 
@@ -167,12 +165,13 @@ def plot_scatter(x, y, xlabel, ylabel, title):
     plt.title(title)
     plt.show()
 
-def plot_bar(days, heights, ylabel, title):
+def plot_bar(days, heights, ylim, ylabel, title):
     '''
     ...
     '''
     plt.figure()
-    plt.hist(days, height=heights)
+    plt.bar(days, height=heights)
+    plt.ylim(ylim)
     plt.ylabel(ylabel)
     plt.title(title)
     plt.show()
