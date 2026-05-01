@@ -140,6 +140,19 @@ def days_raw_wpm(df, days):
         days_raw_wpm.append(day_raw_wpm)
     return days_raw_wpm
 
+def week_wpm(df, days):
+    '''
+    ...
+    '''
+    weekday_wpm = []
+    weekend_wpm = []
+    for day in days:
+        if day == "Saturday" or day == "Sunday":
+            weekend_wpm = weekend_wpm + df.groupby("dayOfTheWeek").get_group(day)["wpm"].to_list()
+        else:
+            weekday_wpm = weekday_wpm + df.groupby("dayOfTheWeek").get_group(day)["wpm"].to_list()
+    return weekday_wpm, weekend_wpm
+
 def plot_grouped_bar(month_names, heights1, heights2, ylim, ylabel, title):
     '''
     ...
